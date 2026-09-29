@@ -1,0 +1,47 @@
+{
+  "name": "kanban-gateway",
+  "version": "0.0.1",
+  "description": "NestJS BFF Gateway for Kanban Board",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "oxlint src/"
+  },
+  "dependencies": {
+    "@nestjs/common": "^12.0.1",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/core": "^12.0.1",
+    "@nestjs/platform-express": "^12.0.1",
+    "axios": "^1.6.0",
+    "class-validator": "^0.15.1",
+    "class-transformer": "^0.5.1",
+    "connect-redis": "^7.1.0",
+    "express-session": "^1.18.0",
+    "ioredis": "^5.3.0",
+    "lint": "oxlint src/ test/",
+    "redis": "^6.2.1",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.0",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.71.0",
+    "@typescript-eslint/parser": "^8.71.0",
+    "eslint": "^10.11.0",
+    "oxlint": "^1.86.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5.0.0"
+  }
+}

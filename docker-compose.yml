@@ -1,0 +1,21 @@
+services:
+  gateway:
+    build: .
+    container_name: kanban-gateway
+    ports:
+      - '8090:8090'
+    env_file:
+      - .env.docker
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7-alpine
+    container_name: kanban-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
