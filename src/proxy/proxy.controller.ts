@@ -13,14 +13,18 @@ import { ProxyService } from "./proxy.service";
 export class ProxyController {
   constructor(private readonly proxyService: ProxyService) { }
 
-  @All(["lists", "lists/*path", "cards", "cards/*path", "users", "users/*path"])
+  @All(["lists", "lists/*path", "cards", "cards/*path", "users", "users/*path", 'auth/register',
+  ])
   async proxy(
     @Req() req: Request,
     @Res() res: Response,
     @Session() session: Record<string, any>,
   ) {
-    if (!session.jwt) {
-      throw new UnauthorizedException("No active session");
+
+    const isPublicPath = req.path === '/auth/register';
+
+    if (!isPublicPath && !session.jwt) {
+      throw new UnauthorizedException('No active session');
     }
 
     const { status, data } = await this.proxyService.forward(

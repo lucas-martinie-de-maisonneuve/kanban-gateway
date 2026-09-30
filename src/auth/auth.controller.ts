@@ -5,15 +5,16 @@ import {
   HttpStatus,
   Post,
   Req,
+  Res,
   Session,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
-import { Request } from "express";
+import { Request, Response } from "express";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post("login")
   @HttpCode(HttpStatus.OK)
@@ -23,9 +24,10 @@ export class AuthController {
     return { message: "Login successful" };
   }
 
-  @Post("logout")
+  @Post('logout')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async logout(@Req() req: Request) {
-    req.session.destroy(() => {});
+  async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
+    req.session.destroy(() => { });
+    res.clearCookie('connect.sid');
   }
 }
